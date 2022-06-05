@@ -2,19 +2,22 @@ import express from 'express'
 import payload from 'payload'
 import { config as dotenv } from 'dotenv'
 
+if (process.env.NODE_ENV !== 'production') {
+	dotenv({ path: '.env.development' })
+}
+
 dotenv()
 
 if (!process.env.PAYLOAD_SECRET) {
 	throw new Error('[env] PAYLOAD_SECRET is not defined')
 }
 
-if (!process.env.MONGO_URI) {
-	throw new Error('[env] MONGO_URI is not defined')
+if (!process.env.MONGODB_URI) {
+	throw new Error('[env] MONGODB_URI is not defined')
 }
 
 const app = express()
 
-// Redirect root to Admin panel
 app.get('/', (_, res) => {
 	res.redirect('/admin')
 })
@@ -22,8 +25,11 @@ app.get('/', (_, res) => {
 // Initialize Payload
 payload.init({
 	secret: process.env.PAYLOAD_SECRET,
-	mongoURL: process.env.MONGO_URI,
+	mongoURL: process.env.MONGODB_URI,
 	express: app,
+	// TODO: configure email service
+	// email: {
+	// },
 	onInit: () => {
 		payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`)
 	},

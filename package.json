@@ -1,16 +1,18 @@
 {
   "name": "payload-starter-typescript",
   "description": "Blank template - no collections",
-  "version": "1.0.0",
-  "main": "dist/server.js",
+  "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "cross-env NODE_ENV=development nodemon",
     "build:payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload build",
     "build:server": "tsc",
-    "build": "yarn build:payload && yarn build:server",
+    "build": "cross-env NODE_ENV=production && npm run build:payload && npm run build:server",
+    "start": "node dist/server.js",
     "serve": "cross-env PAYLOAD_CONFIG_PATH=dist/payload.config.js NODE_ENV=production node dist/server.js",
-    "generate:types": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types"
+    "generate:types": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
+    "fix:types": "node src/lib/fixTypes.ts",
+    "types": "npm run generate:types && npm run fix:types"    
   },
   "dependencies": {
     "dotenv": "^8.2.0",
@@ -20,6 +22,7 @@
   "devDependencies": {
     "@types/express": "^4.17.9",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
+    "@typescript-eslint/parser": "^5.27.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.16.0",
     "eslint-config-prettier": "^8.5.0",

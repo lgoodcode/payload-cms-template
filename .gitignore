@@ -14,6 +14,10 @@
 
 # production
 /build
+/dist
+
+# media files
+/media/**/*
 
 # miscgit 
 .DS_Store
@@ -37,3 +41,8 @@ yarn-error.log*
 # personal notes
 NOTES.md
 TODO.md
+
+# graphql
+src/graphql
+
+/mongoBackup
