@@ -6,6 +6,7 @@ import Users from './collections/Users'
 import Media from './collections/Media'
 import Pages from './collections/Pages'
 import Submissions from './collections/Submissions'
+import Build from './globals/Build'
 import Navigation from './globals/Navigation'
 import Seo from './globals/Seo'
 import SocialMedia from './globals/SocialMedia'
@@ -27,7 +28,7 @@ export default buildConfig({
 		user: Users.slug,
 	},
 	collections: [Blog, Users, Media, Pages, Submissions],
-	globals: [Navigation, ContactInfo, Seo, SocialMedia, Footer],
+	globals: [Build, Navigation, ContactInfo, Seo, SocialMedia, Footer],
 	maxDepth: 5,
 	rateLimit: {
 		max: 500,

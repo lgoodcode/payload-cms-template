@@ -13,14 +13,27 @@ If the newer ones are installed it will break the admin page build.
 
 # Deployment
 
-The CMS is hosted on Heroku. To allow it to work in Heroku, we have to
-modify the install step because it will install the new dependencies
-which will break the admin page.
+## Heroku
 
-We use the `heroku-postbuild` script will run instead of the default
-`npm run build`. Within the script, we install the modules again with
-the `--legacy-peer-deps` flag. Followed by that, we run the build
-script and the CMS is ready to be used.
+To allow Payload with ESLint and Prettier (known so far that will break Payload) 
+to work in Heroku, we have to make a few modifications.
+
+### Dependencies
+
+`cross-env` and `typescript` need to be moved as a dependency from devDependency
+to allow them to be used during the build process.
+
+### Script
+
+Add `USE_NPM_INSTALL=true` and `BUILD_WEBHOOK_URL` environment variables to config 
+vars. The former is to use `npm ci`. This is to allow the use of the `legacy-peer-deps` 
+flag. The latter is the webhook that will be used to trigger rebuilds of the front-end.
+This is only required for SSG sites and can be modified in the `lib/triggerBuild.ts` file.
+
+Add `"heroku-postbuild": "npm install --legacy-peer-deps && npm run build"` to
+the `package.json` scripts. This is a script unique to Heroku and will use this
+specific script instead of `npm build`. So we perform out needed install and
+then run the build.
 
 ## **Important**
 
@@ -36,6 +49,7 @@ platform hosting the CMS:
 
 - `PAYLOAD_SECRET`
 - `MONGODB_URI`
+- `BUILD_WEBHOOK_URL` *(needed by default, can modify `lib/triggerBuild`)
 - `PAYLOAD_PUBLIC_SERVER_URL` *[optional (just used to display the URL when starting up)]*
 
 # Details
