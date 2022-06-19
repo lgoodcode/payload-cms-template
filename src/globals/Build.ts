@@ -2,6 +2,7 @@ import type { GlobalConfig } from 'payload/types'
 import { ADMIN } from '../constants/roles'
 import accessControl from '../lib/accessControl'
 import triggerBuild from '../lib/triggerBuild'
+import LastModifiedBy from '../fields/LastModifiedBy'
 
 const Build: GlobalConfig = {
 	slug: 'build',
@@ -21,6 +22,7 @@ const Build: GlobalConfig = {
 		],
 	},
 	fields: [
+		LastModifiedBy,
 		{
 			name: 'build',
 			type: 'checkbox',

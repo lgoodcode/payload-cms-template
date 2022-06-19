@@ -1,5 +1,6 @@
 import { GlobalConfig } from '../types/payload'
 import { defaultGlobalAccess } from '../lib/accessControl'
+import LastModifiedBy from '../fields/LastModifiedBy'
 import Link from '../fields/Link'
 
 const Navigation: GlobalConfig = {
@@ -11,6 +12,7 @@ const Navigation: GlobalConfig = {
 	},
 	access: defaultGlobalAccess,
 	fields: [
+		LastModifiedBy,
 		{
 			name: 'links',
 			label: 'Links',

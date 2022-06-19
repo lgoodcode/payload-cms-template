@@ -1,5 +1,6 @@
 import { GlobalConfig } from 'payload/types'
 import { defaultGlobalAccess } from '../lib/accessControl'
+import LastModifiedBy from '../fields/LastModifiedBy'
 
 const Seo: GlobalConfig = {
 	slug: 'seo',
@@ -8,6 +9,7 @@ const Seo: GlobalConfig = {
 	},
 	access: defaultGlobalAccess,
 	fields: [
+		LastModifiedBy,
 		{
 			name: 'siteName',
 			label: 'Site Name',

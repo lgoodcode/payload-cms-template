@@ -4,6 +4,7 @@
  */
 export interface Build {
 	id: string
+	lastModifiedBy?: string
 	build: boolean
 	status?: string
 }
@@ -13,6 +14,7 @@ export interface Build {
  */
 export interface Navigation {
 	id: string
+	lastModifiedBy?: string
 	links?: {
 		type: 'url' | 'page'
 		label: string
@@ -624,6 +626,7 @@ export interface Blog {
  */
 export interface ContactInformation {
 	id: string
+	lastModifiedBy?: string
 	phone?: string
 	email?: string
 	address?: string
@@ -765,6 +768,7 @@ export interface ContactInformation {
  */
 export interface Seo {
 	id: string
+	lastModifiedBy?: string
 	siteName: string
 	description: string
 	favicon: Media
@@ -776,6 +780,7 @@ export interface Seo {
  */
 export interface SocialMedia {
 	id: string
+	lastModifiedBy?: string
 	links?: {
 		type: 'url' | 'page'
 		label: string
@@ -790,6 +795,7 @@ export interface SocialMedia {
  */
 export interface Footer {
 	id: string
+	lastModifiedBy?: string
 	copyright: string
 	other: (
 		| {

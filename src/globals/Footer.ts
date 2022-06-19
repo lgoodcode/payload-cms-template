@@ -2,6 +2,7 @@ import { GlobalConfig } from '../types/payload'
 import { defaultGlobalAccess } from '../lib/accessControl'
 import Links from '../blocks/links'
 import Texts from '../blocks/texts'
+import LastModifiedBy from '../fields/LastModifiedBy'
 
 const Footer: GlobalConfig = {
 	slug: 'footer',
@@ -11,6 +12,7 @@ const Footer: GlobalConfig = {
 	},
 	access: defaultGlobalAccess,
 	fields: [
+		LastModifiedBy,
 		{
 			name: 'copyright',
 			label: 'Copyright',

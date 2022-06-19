@@ -2,6 +2,7 @@ import { GlobalConfig } from '../types/payload'
 import { defaultGlobalAccess } from '../lib/accessControl'
 import Links from '../blocks/links'
 import Texts from '../blocks/texts'
+import LastModifiedBy from '../fields/LastModifiedBy'
 import Phone from '../fields/Phone'
 
 const ContactInfo: GlobalConfig = {
@@ -9,6 +10,7 @@ const ContactInfo: GlobalConfig = {
 	label: 'Contact Information',
 	access: defaultGlobalAccess,
 	fields: [
+		LastModifiedBy,
 		Phone(),
 		{
 			name: 'email',
