@@ -52,6 +52,27 @@ platform hosting the CMS:
 - `BUILD_WEBHOOK_URL` *(needed by default, can modify `lib/triggerBuild`)
 - `PAYLOAD_PUBLIC_SERVER_URL` *[optional (just used to display the URL when starting up)]*
 
+Current default third party image hosting is through Amazon S3
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `AWS_BUCKET`
+
+# Images
+
+Images are hosted on Amazon S3 by default. Can change to another platform.
+
+It requires multiple environment variables for the connection. It uses a hook to
+upload images to S3 and then retrieves them from there. Same goes for the thumbnails.
+
+## **Important**
+
+Because Payload uses Webpack to bundle and the `aws-sdk` uses NodeJS modules such as
+`fs` and `utils`, it will throw errors because they are not available in the browser.
+So we modify the `payload.config.ts` webpack property under `admin`. We simply just
+have to get the path of the file that will be using NodeJS modules and set the alias
+resolve to false to ignore it. We have to use the path to the file because it is not
+an npm package that is imported.
+
 # Details
 
 Contains a lot of default boilerplate that can be used for multiple

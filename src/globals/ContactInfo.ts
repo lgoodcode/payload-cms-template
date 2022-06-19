@@ -1,10 +1,7 @@
 import { GlobalConfig } from '../types/payload'
 import { defaultGlobalAccess } from '../lib/accessControl'
-import Text from '../blocks/fields/Text'
-import TextArea from '../blocks/fields/TextArea'
-import LinkBlock from '../blocks/Link'
-import LinkGroup from '../blocks/LinkGroup'
-import TextGroups from '../blocks/texts/TextGroups'
+import Links from '../blocks/links'
+import Texts from '../blocks/texts'
 import Phone from '../fields/Phone'
 
 const ContactInfo: GlobalConfig = {
@@ -27,7 +24,7 @@ const ContactInfo: GlobalConfig = {
 			name: 'other',
 			label: 'Other Information',
 			type: 'blocks',
-			blocks: [Text, TextArea, TextGroups, LinkBlock, LinkGroup],
+			blocks: [...Links, ...Texts],
 		},
 	],
 }

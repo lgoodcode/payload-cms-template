@@ -1,8 +1,11 @@
 {
-  "name": "payload-starter-typescript",
+  "name": "payload-template-typescript",
   "description": "Blank template - no collections",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
+  "engines": {
+    "node": "^16"
+  },
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon",
     "build:payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload build",
@@ -12,9 +15,10 @@
     "serve": "cross-env PAYLOAD_CONFIG_PATH=dist/payload.config.js NODE_ENV=production node dist/server.js",
     "generate:types": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
     "fix:types": "node src/lib/fixTypes.ts",
-    "types": "npm run generate:types && npm run fix:types"    
+    "types": "npm run generate:types && npm run fix:types"
   },
   "dependencies": {
+    "aws-sdk": "^2.1157.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "payload": "^0.17.2"

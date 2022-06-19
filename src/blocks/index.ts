@@ -8,9 +8,7 @@ import Image from './Image'
 import Images from './Images'
 import ImageCustom from './ImageCustom'
 import ImageCustoms from './ImageCustoms'
-import Link from './Link'
-import Links from './Links'
-import LinkGroup from './LinkGroup'
+import Links from './links'
 import Texts from './texts'
 
 export default [
@@ -23,8 +21,6 @@ export default [
 	Images,
 	ImageCustom,
 	ImageCustoms,
-	Link,
-	Links,
-	LinkGroup,
+	...Links,
 	...Texts,
 ]

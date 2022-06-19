@@ -1,20 +1,6 @@
 import express from 'express'
 import payload from 'payload'
-import { config as dotenv } from 'dotenv'
-
-if (process.env.NODE_ENV !== 'production') {
-	dotenv({ path: '.env.development' })
-}
-
-dotenv()
-
-if (!process.env.PAYLOAD_SECRET) {
-	throw new Error('[env] PAYLOAD_SECRET is not defined')
-}
-
-if (!process.env.MONGODB_URI) {
-	throw new Error('[env] MONGODB_URI is not defined')
-}
+import './lib/env'
 
 const app = express()
 
@@ -28,8 +14,7 @@ payload.init({
 	mongoURL: process.env.MONGODB_URI,
 	express: app,
 	// TODO: configure email service
-	// email: {
-	// },
+	// email: {},
 	onInit: () => {
 		payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`)
 	},

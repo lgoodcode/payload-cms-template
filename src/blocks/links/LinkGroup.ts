@@ -1,5 +1,5 @@
 import type { Block } from 'payload/types'
-import LinkGroupField from '../fields/LinkGroup'
+import LinkGroupField from '../../fields/LinkGroup'
 
 const LinkGroup: Block = {
 	slug: 'link-group',

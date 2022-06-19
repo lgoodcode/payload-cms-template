@@ -1,9 +1,7 @@
 import { GlobalConfig } from '../types/payload'
 import { defaultGlobalAccess } from '../lib/accessControl'
+import Links from '../blocks/links'
 import Texts from '../blocks/texts'
-import Link from '../blocks/Link'
-import Links from '../blocks/Links'
-import LinkGroup from '../blocks/LinkGroup'
 
 const Footer: GlobalConfig = {
 	slug: 'footer',
@@ -24,7 +22,7 @@ const Footer: GlobalConfig = {
 			label: 'Other Content',
 			type: 'blocks',
 			required: true,
-			blocks: [...Texts, Link, Links, LinkGroup],
+			blocks: [...Links, ...Texts],
 		},
 	],
 }

@@ -13,7 +13,20 @@ import SocialMedia from './globals/SocialMedia'
 import ContactInfo from './globals/ContactInfo'
 import Footer from './globals/Footer'
 
+// When deploying to production, attempting to import only the config method
+// will break the build.
 dotenv.config()
+
+// Only need to check this environment in the config.
+if (process.env.NODE_ENV === 'production ' && !process.env.BUILD_WEBHOOK_URL) {
+	throw new Error(
+		`[env] BUILD_WEBHOOK_URL is not defined. Received: ${process.env.BUILD_WEBHOOK_URL}`
+	)
+}
+
+// Because we are using serve modules within the admin page webpack, it will
+// throw errors so we have to alias it false to ignore it.
+const uploadFilePath = path.resolve(__dirname, 'lib', 'aws.ts')
 
 export default buildConfig({
 	/**
@@ -26,6 +39,21 @@ export default buildConfig({
 			: process.env.PAYLOAD_PUBLIC_SERVER_URL || undefined,
 	admin: {
 		user: Users.slug,
+		/**
+		 * Under resolve, we can use the alias property to point a module to
+		 * another path or, just set it to false to ignore it from the
+		 * bundle of the admin panel.
+		 */
+		webpack: (config) => ({
+			...config,
+			resolve: {
+				...config.resolve,
+				alias: {
+					...config.resolve.alias,
+					[uploadFilePath]: false,
+				},
+			},
+		}),
 	},
 	collections: [Blog, Users, Media, Pages, Submissions],
 	globals: [Build, Navigation, ContactInfo, Seo, SocialMedia, Footer],
@@ -34,9 +62,7 @@ export default buildConfig({
 		max: 500,
 	},
 	// Whitelist of domains to allow cookie auth from
-	// csrf: [
-	// 	'https://domain.com'
-	// ],
+	csrf: ['localhost', process.env.PAYLOAD_PUBLIC_SERVER_URL],
 	typescript: {
 		outputFile: path.resolve(__dirname, 'types', 'payload-types.ts'),
 	},

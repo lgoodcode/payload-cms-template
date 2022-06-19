@@ -1,9 +1,9 @@
 import type { CollectionConfig } from 'payload/types'
-import path from 'path'
 import { USER, ADMIN } from '../constants/roles'
 import accessControl from '../lib/accessControl'
 import uniqueId from '../hooks/uniqueId'
 import LastModifiedBy from '../fields/LastModifiedBy'
+import uploadFile from '../hooks/uploadFile'
 
 const Media: CollectionConfig = {
 	slug: 'media',
@@ -19,35 +19,13 @@ const Media: CollectionConfig = {
 		delete: ({ req: { user } }) => accessControl(user, ADMIN),
 	},
 	hooks: {
-		beforeChange: [uniqueId],
+		beforeChange: [uniqueId, uploadFile],
 	},
 	upload: {
-		staticURL: '/media',
-		staticDir: path.join(process.cwd(), 'media'),
-
-		// imageSizes: [
-		// 	{
-		// 		name: 'thumbnail',
-		// 		width: 400,
-		// 		height: 300,
-		// 	},
-		// 	{
-		// 		name: 'card',
-		// 		width: 768,
-		// 		height: 1024,
-		// 	},
-		// 	{
-		// 		name: 'tablet',
-		// 		width: 1024,
-		// 		// By specifying `null` or leaving a height undefined,
-		// 		// the image will be sized to a certain width,
-		// 		// but it will retain its original aspect ratio
-		// 		// and calculate a height automatically.
-		// 		height: null,
-		// 	},
-		// ],
-		adminThumbnail: 'thumbnail',
+		disableLocalStorage: true,
 		mimeTypes: ['image/*'],
+		// For the thumbnail, we retrieve the image URL
+		adminThumbnail: ({ doc }) => `${process.env.PAYLOAD_PUBLIC_AWS_PUBLIC_URL}/${doc.filename}`,
 	},
 	fields: [
 		LastModifiedBy,

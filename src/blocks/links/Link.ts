@@ -1,5 +1,5 @@
 import type { Block } from 'payload/types'
-import LinkField from '../fields/Link'
+import LinkField from '../../fields/Link'
 
 const Link: Block = {
 	slug: 'link',
