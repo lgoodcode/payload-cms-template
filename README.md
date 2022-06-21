@@ -1,5 +1,7 @@
 # PayloadCMS Template
 
+[PayloadCMS](https://payloadcms.com/)
+
 This is a basic template setup for PayloadCMS. It contains fields and
 blocks ready to be used for most pages and can be easily adapted to a
 front-end design.
