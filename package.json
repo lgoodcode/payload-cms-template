@@ -1,10 +1,11 @@
 {
-  "name": "payload-template-typescript",
-  "description": "Blank template",
-  "version": "1.0.2",
+  "name": "payload-template",
+  "description": "Payload CMS template",
+  "version": "1.1.0",
   "license": "MIT",
+  "author": "Lawrence Good",
   "engines": {
-    "node": "^16"
+    "node": ">=16 <=18"
   },
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon",
@@ -16,6 +17,9 @@
     "generate:types": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
     "fix:types": "node src/lib/fixTypes.ts",
     "types": "npm run generate:types && npm run fix:types"
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts}": "eslint --cache --fix"
   },
   "dependencies": {
     "aws-sdk": "^2.1157.0",
@@ -31,6 +35,8 @@
     "eslint": "^8.16.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^12.5.0",
     "nodemon": "^2.0.6",
     "prettier": "^2.6.2",
     "ts-node": "^9.1.1",

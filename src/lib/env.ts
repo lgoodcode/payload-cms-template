@@ -12,7 +12,7 @@ if (!process.env.PORT) {
 }
 
 if (!process.env.PAYLOAD_SECRET) {
-	throw new Error(`[env] PAYLOAD_SECkRET is not defined. Received: ${process.env.PAYLOAD_SECRET}`)
+	throw new Error(`[env] PAYLOAD_SECRET is not defined. Received: ${process.env.PAYLOAD_SECRET}`)
 }
 
 if (!process.env.MONGODB_URI) {

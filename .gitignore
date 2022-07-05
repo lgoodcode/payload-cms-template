@@ -16,7 +16,10 @@
 /build
 /dist
 
-# miscgit 
+# eslint
+.eslintcache
+
+# miscgit
 .DS_Store
 *.pem
 
