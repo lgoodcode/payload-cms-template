@@ -7,6 +7,10 @@
   "engines": {
     "node": ">=16 <=18"
   },
+	"repository": {
+		"type": "github",
+		"url": "https://github.com/lgoodcode/payload-template"
+	},
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon",
     "build:payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload build",
