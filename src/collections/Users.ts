@@ -29,11 +29,15 @@ const Users: CollectionConfig = {
 		 * operation from completing.
 		 */
 		beforeValidate: [
-			({ data, operation, originalDoc, req: { user } }) => {
+			({ data, operation, originalDoc, req: { user, originalUrl } }) => {
 				/**
 				 * Creating new accounts
 				 */
 				if (operation === 'create') {
+					// Creating the first user
+					if (originalUrl === '/api/users/first-register' && !user) {
+						return data
+					}
 					// Prevent admins from creating superusers
 					if (user.role === ADMIN && data.role === SUPER_USER) {
 						throw new Error('Unauthorized access')
@@ -44,11 +48,10 @@ const Users: CollectionConfig = {
 							'Invalid password. Must be at least 8 characters, contain an uppercase letter, a digit, and a special character.'
 						)
 					}
-				}
-				/**
-				 * Updating users
-				 */
-				if (operation === 'update') {
+					/**
+					 * Updating users
+					 */
+				} else if (operation === 'update') {
 					// Prevent users from modifying roles and admins from elevating to superuser
 					if (
 						(user.role === USER && originalDoc.role !== USER) ||

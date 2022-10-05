@@ -25,6 +25,10 @@
   "lint-staged": {
     "src/**/*.{js,ts}": "eslint --cache --fix"
   },
+	"nodemonConfig": {
+		"ext": "ts",
+		"exec": "ts-node src/server.ts"
+	},
   "dependencies": {
     "aws-sdk": "^2.1157.0",
     "dotenv": "^8.2.0",
