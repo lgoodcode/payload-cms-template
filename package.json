@@ -7,6 +7,10 @@
   "engines": {
     "node": ">=16 <=18"
   },
+	"repository": {
+		"type": "github",
+		"url": "https://github.com/lgoodcode/payload-template"
+	},
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon",
     "build:payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload build",
@@ -21,6 +25,10 @@
   "lint-staged": {
     "src/**/*.{js,ts}": "eslint --cache --fix"
   },
+	"nodemonConfig": {
+		"ext": "ts",
+		"exec": "ts-node src/server.ts"
+	},
   "dependencies": {
     "aws-sdk": "^2.1157.0",
     "dotenv": "^8.2.0",
